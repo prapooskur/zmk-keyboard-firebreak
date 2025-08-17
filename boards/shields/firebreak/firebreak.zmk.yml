@@ -1,0 +1,13 @@
+file_format: "1"
+id: firebreak
+name: Firebreak
+type: shield
+url: https://github.com/prsid/firebreak
+requires:
+  - seeed_xiao
+exposes:
+  - nice_view
+features:
+  - keys
+  - display
+  - studio
