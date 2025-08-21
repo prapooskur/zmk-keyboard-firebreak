@@ -2,13 +2,4 @@ name: firebreak
 build:
   settings:
     # List your dependencies
-    # depends:
-    #   - zmk-example-dependency
-    # Folder containing a "CMakeLists.txt" (. = root)
-    cmake: .
-    # Folder containing a "boards" folder (. = root)
     board_root: .
-    # Folder containing a "dts" folder (. = root)
-    dts_root: .
-    # Folder containing a "snippets" folder (. = root)
-    snippet_root:  .
