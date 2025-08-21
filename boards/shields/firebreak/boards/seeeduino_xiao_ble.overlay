@@ -23,6 +23,7 @@
 
 };
 
+// dual nice!views todo fix
 &spi0 {
     compatible = "nordic,nrf-spim";
     pinctrl-0 = <&spi0_default>;

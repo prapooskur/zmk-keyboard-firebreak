@@ -4,7 +4,7 @@ name: Firebreak
 type: shield
 url: https://github.com/prsid/firebreak
 requires:
-  - seeed_xiao
+  - seeeduino_xiao_ble
 exposes:
   - nice_view
 features:
