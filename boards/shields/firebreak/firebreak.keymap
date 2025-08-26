@@ -1,22 +1,111 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
+
+/ {
+    combos {
+        compatible = "zmk,combos";
+        // [({})]
+        combo_lbrc {
+            bindings = <&kp LBKT>;
+            key-positions = <2 14>; // KC_W, KC_S
+        };
+        combo_lprn {
+            bindings = <&kp LPAR>;
+            key-positions = <3 15>; // KC_E, KC_D
+        };
+        combo_lcbr {
+            bindings = <&kp LBRC>;
+            key-positions = <4 16>; // KC_R, KC_F
+        };
+        combo_rbrc {
+            bindings = <&kp RBKT>;
+            key-positions = <9 21>; // KC_O, KC_L
+        };
+        combo_rprn {
+            bindings = <&kp RPAR>;
+            key-positions = <10 22>; // KC_I, KC_K
+        };
+        combo_rcbr {
+            bindings = <&kp RBRC>;
+            key-positions = <11 23>; // KC_U, KC_J
+        };
+    };
+};
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+}
+
 / {
     keymap {
         compatible = "zmk,keymap";
 
         default_layer { // Layer 0
-            // ----------------------------------------------------------------------------
-            // |  Q  |  W  |  E  |  R  |  T  |  Y  |    |  U  |  I  |  O  |  P  |  [  |  ]  |
-            // |  A  |  S  |  D  |  F  |  G  |  H  |    |  J  |  K  |  L  |  ;  |  '  |ENTER|
-            // |SHIFT|  Z  |  X  |  C  |  V  |  B  |    |  N  |  M  |  ,  |  .  |  /  |SHIFT|
-            // |     |     |     |CTRL |SPACE|SPACE|    |SPACE|SPACE|ALT  |     |     |     |
+            display-name = "Base";
             bindings = <
-                &kp Q      &kp Q    &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSPC
-                &kp LCTRL  &kp A    &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
-                &kp LSHFT  &kp Z    &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT
-                                              &kp LALT  &kp LGUI  &kp SPC   &kp RET   &kp RGUI  &kp RALT
+                &kp TAB    &kp Q    &kp W     &kp E     &kp R     &kp T          &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSPC
+                &kp LCTRL  &kp A    &kp S     &kp D     &kp F     &kp G          &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
+                &kp LSHFT  &kp Z    &kp X     &kp C     &kp V     &kp B          &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT
+                &kp LBKT   &kp LBKT &kp LBKT  &kp LALT  &mo 1     &kp SPC        &kp RET   &mo 2     &kp RGUI  &kp RBKT  &kp RBKT  &kp RBKT
             >;
+        };
+
+        nav_layer { // Layer 1
+            display-name = "Navigation";
+            bindings = <
+                &trans     &kp 1    &kp 2      &kp 3      &kp 4           &kp 5          &kp 6     &kp 7     &kp 8     &kp 9     &kp 0     &kp BSPC
+                &trans     &kp C_PP &kp C_NEXT &kp C_NEXT &kp C_VOL_UP    &kp MINUS      &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT &trans    &trans
+                &trans     &trans   &trans     &trans     &kp C_VOL_DN    &trans         &trans    &trans    &trans    &trans    &trans    &trans
+                &trans     &trans   &trans     &trans     &trans          &trans         &trans    &trans    &trans    &trans    &trans    &trans
+            >;
+        };
+
+        sym_layer { // Layer 2
+            display-name = "Symbol";
+            bindings = <
+                &kp TILDE  &kp 1    &kp 7     &kp 8     &kp 9     &kp DEL   &trans         &trans    &trans    &trans    &trans    &trans
+                &trans     &kp 4    &kp 4     &kp 5     &kp 6     &kp MINUS &kp PLUS       &kp LGUI  &kp LALT  &kp LSHFT &kp LCTRL &kp GRAVE
+                &trans     &kp 1    &kp 1     &kp 2     &kp 3     &kp 0     &kp EQUAL      &kp DEL   &trans    &trans    &trans    &trans
+                &trans     &trans   &trans    &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans
+             >;
+         };
+
+        adj_layer { // Layer 3
+            display-name = "Adjust";
+            bindings = <
+                &kp F1     &kp F2   &kp F3    &kp F4    &kp F5    &kp F6    &kp F7         &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
+                &bootloader &trans  &trans    &trans    &sys_reset &trans   &trans         &trans    &trans    &trans    &trans    &C_SLEEP
+                &trans     &trans   &trans    &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans
+                &trans     &trans   &trans    &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans
+             >;
+         };
+
+         /*
+        clone_layer { // Transparent layer to use as a base
+            display-name = "Transparent";
+            bindings = <
+                &trans     &trans   &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans    &trans
+                &trans     &trans   &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans    &trans
+                &trans     &trans   &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans    &trans
+                &trans     &trans   &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans    &trans
+             >;
+         };
+         */
+
+        // zmk studio custom layers
+        extra1 {
+            status = "reserved";
+        };
+
+        extra2 {
+            status = "reserved";
         };
     };
  };
