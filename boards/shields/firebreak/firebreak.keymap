@@ -1,48 +1,6 @@
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 
-
-/ {
-    combos {
-        compatible = "zmk,combos";
-        // [({})]
-        combo_lbrc {
-            bindings = <&kp LBKT>;
-            key-positions = <2 14>; // KC_W, KC_S
-        };
-        combo_lprn {
-            bindings = <&kp LPAR>;
-            key-positions = <3 15>; // KC_E, KC_D
-        };
-        combo_lcbr {
-            bindings = <&kp LBRC>;
-            key-positions = <4 16>; // KC_R, KC_F
-        };
-        combo_rbrc {
-            bindings = <&kp RBKT>;
-            key-positions = <9 21>; // KC_O, KC_L
-        };
-        combo_rprn {
-            bindings = <&kp RPAR>;
-            key-positions = <10 22>; // KC_I, KC_K
-        };
-        combo_rcbr {
-            bindings = <&kp RBRC>;
-            key-positions = <11 23>; // KC_U, KC_J
-        };
-    };
-};
-
-/ {
-    conditional_layers {
-        compatible = "zmk,conditional-layers";
-        tri_layer {
-            if-layers = <1 2>;
-            then-layer = <3>;
-        };
-    };
-}
-
 / {
     keymap {
         compatible = "zmk,keymap";
@@ -81,7 +39,7 @@
             display-name = "Adjust";
             bindings = <
                 &kp F1     &kp F2   &kp F3    &kp F4    &kp F5    &kp F6    &kp F7         &kp F8    &kp F9    &kp F10   &kp F11   &kp F12
-                &bootloader &trans  &trans    &trans    &sys_reset &trans   &trans         &trans    &trans    &trans    &trans    &C_SLEEP
+                &bootloader &trans  &trans    &trans    &sys_reset &trans   &trans         &trans    &trans    &trans    &trans    &trans
                 &trans     &trans   &trans    &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans
                 &trans     &trans   &trans    &trans    &trans    &trans    &trans         &trans    &trans    &trans    &trans    &trans
              >;
@@ -109,3 +67,44 @@
         };
     };
  };
+
+ / {
+    combos {
+        compatible = "zmk,combos";
+        // [({})]
+        combo_lbrc {
+            bindings = <&kp LBKT>;
+            key-positions = <2 14>; // KC_W, KC_S
+        };
+        combo_lprn {
+            bindings = <&kp LPAR>;
+            key-positions = <3 15>; // KC_E, KC_D
+        };
+        combo_lcbr {
+            bindings = <&kp LBRC>;
+            key-positions = <4 16>; // KC_R, KC_F
+        };
+        combo_rbrc {
+            bindings = <&kp RBKT>;
+            key-positions = <9 21>; // KC_O, KC_L
+        };
+        combo_rprn {
+            bindings = <&kp RPAR>;
+            key-positions = <10 22>; // KC_I, KC_K
+        };
+        combo_rcbr {
+            bindings = <&kp RBRC>;
+            key-positions = <11 23>; // KC_U, KC_J
+        };
+    };
+};
+
+/ {
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <1 2>;
+            then-layer = <3>;
+        };
+    };
+};
