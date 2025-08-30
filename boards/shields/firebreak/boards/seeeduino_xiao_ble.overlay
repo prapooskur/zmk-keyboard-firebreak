@@ -24,24 +24,24 @@
 };
 
 // dual nice!views todo fix
-&spi0 {
-    compatible = "nordic,nrf-spim";
-    pinctrl-0 = <&spi0_default>;
-    pinctrl-1 = <&spi0_sleep>;
-    pinctrl-names = "default", "sleep";
+// &spi0 {
+//     compatible = "nordic,nrf-spim";
+//     pinctrl-0 = <&spi0_default>;
+//     pinctrl-1 = <&spi0_sleep>;
+//     pinctrl-names = "default", "sleep";
 
-    status = "okay";
+//     status = "okay";
 
-    cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>, <&gpio1 11 GPIO_ACTIVE_LOW>;
+//     cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>, <&gpio1 11 GPIO_ACTIVE_LOW>;
 
-    device1: device@0 {
-        compatible = "manufacturer,device";
-        reg = <0>;
-        spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-    };
-    device2: device@1 {
-        compatible = "manufacturer,device";
-        reg = <1>;
-        spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-    };
-};
+//     device1: device@0 {
+//         compatible = "manufacturer,device";
+//         reg = <0>;
+//         spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
+//     };
+//     device2: device@1 {
+//         compatible = "manufacturer,device";
+//         reg = <1>;
+//         spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
+//     };
+// };
