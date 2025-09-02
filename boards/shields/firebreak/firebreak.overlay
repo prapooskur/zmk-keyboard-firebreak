@@ -60,3 +60,6 @@
         // Other chosen items
     };
 };
+
+// enable NFC pins as gpio
+&uicr { nfct-pins-as-gpios; };
