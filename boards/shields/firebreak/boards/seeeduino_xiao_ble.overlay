@@ -3,45 +3,31 @@
     spi0_default: spi0_default {
         /* node name is arbitrary */
         group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 15)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 14)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 13)>;
+            /* main role: configure P1.13 as SPI clock, P1.14 as SPI MISO, P1.15 as SPI MOSI */
+            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 15)>; 
         };
     };
 
     /* configuration for spi0 device, sleep state */
     spi0_sleep: spi0_sleep {
         group1 {
-            /* main role: configure P0.01 as SPI clock, P0.02 as SPI MOSI, P0.03 as SPI MISO */
-            psels = <NRF_PSEL(SPIM_SCK,  1, 15)>,
-                    <NRF_PSEL(SPIM_MOSI, 1, 14)>,
-                    <NRF_PSEL(SPIM_MISO, 1, 13)>;
+            /* main role: configure P1.13 as SPI clock, P1.14 as SPI MISO, P1.15 as SPI MOSI */
+            psels = <NRF_PSEL(SPIM_SCK,  1, 13)>,
+                    <NRF_PSEL(SPIM_MISO, 1, 14)>,
+                    <NRF_PSEL(SPIM_MOSI, 1, 15)>;
             low-power-enable;
         };
     };
 
 };
 
-// dual nice!views todo fix
-// &spi0 {
-//     compatible = "nordic,nrf-spim";
-//     pinctrl-0 = <&spi0_default>;
-//     pinctrl-1 = <&spi0_sleep>;
-//     pinctrl-names = "default", "sleep";
-
-//     status = "okay";
-
-//     cs-gpios = <&gpio1 12 GPIO_ACTIVE_LOW>, <&gpio1 11 GPIO_ACTIVE_LOW>;
-
-//     device1: device@0 {
-//         compatible = "manufacturer,device";
-//         reg = <0>;
-//         spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-//     };
-//     device2: device@1 {
-//         compatible = "manufacturer,device";
-//         reg = <1>;
-//         spi-max-frequency = <1000000>; /* conservatively set to 1MHz */
-//     };
-// };
+// nice view 1 (left half only, for now)
+nice_view_spi: &spi0 {
+    compatible = "nordic,nrf-spim";
+    pinctrl-0 = <&spi0_default>;
+    pinctrl-1 = <&spi0_sleep>;
+    pinctrl-names = "default", "sleep";
+    cs-gpios = <&gpio1 12 GPIO_ACTIVE_HIGH>;
+};
